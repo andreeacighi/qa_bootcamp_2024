@@ -72,7 +72,7 @@ public class Hello {
         // Homework Numbers of days in month February from a year between 1900-2016 that is read from keyboard
         int number = Integer.parseInt(args[2]);
         if(number>=1900 && number<=2016){ // verificam daca anul se gaseste intre parametrii dati
-            if ((number % 4 == 0 && number % 100 != 0) || (number % 100 == 0 && number % 400 != 0) ){
+            if ((number % 4 == 0 && number % 100 != 0) || !(number % 100 == 0 && number % 400 != 0) ){
                 System.out.println("Is a leap year so February has 29 days");
             }else {
                 System.out.println("Is not a leap year so February only has 28 days");
