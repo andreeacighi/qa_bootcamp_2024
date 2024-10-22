@@ -98,7 +98,8 @@ public class CollectionsExercises {
         }
 
         for (Character c : charMap.keySet()){
-            System.out.println(c + " : " + (charMap.get(c)*100.0)/sum + " % ");
+            System.out.println(c + " : " + charMap.get(c)); // fara frecventa
+            System.out.println(c + " : " + (charMap.get(c)*100.0)/sum + " % "); // pentru frecventa
         }
     }
 }
