@@ -1,10 +1,10 @@
 package Homework3;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ConferenceRoom extends Room{
-    public ConferenceRoom(List<Appliance> appliancesType, HashMap<Furniture, Integer> furnitureType) {
+    public ConferenceRoom(List<Appliance> appliancesType, Map<Furniture, Integer> furnitureType) {
         super("ConferenceRoom", appliancesType, furnitureType);
     }
 
@@ -12,10 +12,10 @@ public class ConferenceRoom extends Room{
     public String roomDetails() {
         String seatsNumber = furnitureType.get(Furniture.SEAT) + " seats";
         String appliances = appliancesType.contains(Appliance.VIDEO_PROJECTOR)?
-                "VIDEO_PROJECTOR" : "TV"; //verific daca camera de conferinta contina video proiector sau tv
+                "\t\t\t\tVIDEO_PROJECTOR" : "\t\t\t\tTV"; //verific daca camera de conferinta contina video proiector sau tv
         if (appliancesType.contains(Appliance.TELEPRESENCE)) {
-            appliances += " and Telepresence";
+            appliances += "\n\t\t\t\tTelepresence";
         }
-        return " Conference Room with " + seatsNumber + " and a " + appliances + " .";
+        return seatsNumber + "\n" + appliances ;
     }
 }
