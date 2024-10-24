@@ -1,3 +1,7 @@
+package Homework2;
+
+import Homework2.Author;
+
 public class Library {
     public static void main(String[] args) {
         // varianta cu o singura carte

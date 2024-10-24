@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Calculator" verbose="1" >
+    <test name="Addition" >
+        <parameter name="exp" value="100"></parameter>
+        <parameter name="d1" value="80"></parameter>
+        <parameter name="d2" value="20"></parameter>
+        <parameter name="op" value="+"></parameter>
+        <parameter name="errMess" value="Addition failed"></parameter>
+        <classes>
+            <class name="CalculatorNgTests" />
+        </classes>
+
+    </test>
+
+
+</suite>

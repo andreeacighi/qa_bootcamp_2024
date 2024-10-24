@@ -1,3 +1,5 @@
+package Homework2;
+
 import lombok.Getter;
 import lombok.Setter;
 

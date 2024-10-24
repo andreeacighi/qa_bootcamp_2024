@@ -1,6 +1,7 @@
-import lombok.AllArgsConstructor;
+package Homework2;
+
+import Homework2.Author;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 public class Book {
