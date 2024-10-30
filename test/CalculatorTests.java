@@ -5,6 +5,10 @@ import java.text.DecimalFormat;
 public class CalculatorTests {
 
     Calculator c ;
+    final String subtractionFailMessage ="Subtracting failed.";
+    final String divisionFailMessage="Division failed.";
+    final String sqrtFailMessage="Sqrt failed.";
+    final String multiplicationFailMessage="Sqrt failed.";
     @BeforeAll
     public static void classSetup(){
         System.out.println("Preparing all the tests from the class");
@@ -61,6 +65,77 @@ public class CalculatorTests {
     public void testSquareRoot02(){
         Assertions.assertEquals(Math.sqrt(2),c.compute(2,0,"SQRT"),"SquareRoot failed!");
     }
+
+    // Homework 4
+    @Test
+    public void testSubtraction02(){
+        Assertions.assertEquals(10,c.compute(5,-5,"-"),subtractionFailMessage);
+    }
+    @Test
+    public void testSubtraction03(){
+        Assertions.assertEquals(0,c.compute(5,5,"-"),subtractionFailMessage);
+    }
+    @Test
+    public void testSubtraction04(){
+        Assertions.assertEquals(20,c.compute(15,-5,"-"),subtractionFailMessage);
+    }
+    @Test
+    public void testSubtraction05(){
+        Assertions.assertEquals(70,c.compute(85,15,"-"),subtractionFailMessage);
+    }
+
+    @Test
+    public void testMultiplication02(){
+        Assertions.assertEquals(140,c.compute(70,2,"*"),multiplicationFailMessage);
+    }
+    @Test
+    public void testMultiplication03(){
+        Assertions.assertEquals(90,c.compute(45,2,"*"),multiplicationFailMessage);
+    }
+    @Test
+    public void testMultiplication04(){
+        Assertions.assertEquals(6.6,c.compute(3.3,2,"*"),multiplicationFailMessage);
+    }
+    @Test
+    public void testMultiplication05(){
+        Assertions.assertEquals(56,c.compute(7,8,"*"),multiplicationFailMessage);
+    }
+
+    @Test
+    public void testSquareRoot04(){
+        Assertions.assertEquals(10,c.compute(100,0,"SQRT"),sqrtFailMessage);
+    }
+    @Test
+    public void testSquareRoot05(){
+        Assertions.assertEquals(15,c.compute(225,0,"SQRT"),sqrtFailMessage);
+    }
+    @Test
+    public void testSquareRoot06(){
+        Assertions.assertEquals(3,c.compute(9,0,"SQRT"),sqrtFailMessage);
+    }
+    @Test
+    public void testSquareRoot03(){
+        Assertions.assertEquals(10,c.compute(100,0,"SQRT"),sqrtFailMessage);
+    }
+    @Test
+    public void testDivision01(){
+        Assertions.assertEquals(4,c.compute(16,4,"/"),divisionFailMessage);
+    }
+
+    @Test
+    public void testDivision02(){
+        Assertions.assertEquals(15,c.compute(45,3,"/"),divisionFailMessage);
+    }
+    @Test
+    public void testDivision03(){
+        Assertions.assertEquals(2,c.compute(40,20,"/"),divisionFailMessage);
+    }
+    @Test
+    public void testDivision04(){
+        Assertions.assertEquals(1.5,c.compute(4.5,3,"/"),divisionFailMessage);
+    }
+
+
     @AfterEach
     public void cleanTest(){
         System.out.println("Clean after the test!");
