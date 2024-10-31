@@ -5,17 +5,12 @@ import frameworkUtils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -50,7 +45,47 @@ public class LoginTest {
         return dp.iterator();
     }
 
+    @Test(dataProvider = "RegistrationDataProvider")
+    public void loginRegister(String username, String password, String securityAns){
+        driver.get(baseUrl + "/#/login");
+        WebElement dismissModalElement = Utils.waitForElement(driver, 5,
+                By.cssSelector(Selectors.MODAL_OK_BUTTON));
+        dismissModalElement.click();
+        WebElement registerLink = driver.findElement(By.cssSelector(Selectors.REGISTER_URL));
+        registerLink.click();
 
+        Assert.assertEquals(
+                driver.findElement(By.cssSelector(Selectors.REGISTER_HEADER)).getText(),
+                "User Registration");
+
+        WebElement usernameElement = driver.findElement(By.id(Selectors.REGISTER_EMAIL));
+        usernameElement.clear();
+        usernameElement.sendKeys("alex@alex.com");
+
+        WebElement passwordElement = driver.findElement(By.id(Selectors.REGISTER_PASSWORD));
+        passwordElement.clear();
+        passwordElement.sendKeys("Abc123$");
+
+        WebElement passwordRepeat = driver.findElement(By.id(Selectors.REGISTER_CONFIRM));
+        passwordRepeat.clear();
+        passwordRepeat.sendKeys("Abc123$");
+
+        WebElement securityQuestion = Utils.waitForElement(driver, 5,
+                By.cssSelector(Selectors.SECURITY_QUESTION));
+        securityQuestion.click();
+
+        WebElement securityQuestionChoice = driver.findElement(By.cssSelector(Selectors.SECURITY_QUESTION1));
+        securityQuestionChoice.click();
+
+        WebElement securityAnswer = driver.findElement(By.id(Selectors.SECURITY_ANSWER));
+        securityAnswer.clear();
+        securityAnswer.sendKeys("alex");
+
+        WebElement submitButton = driver.findElement(By.id(Selectors.REGISTER_SUBMIT_BUTTON));
+        //asteapta pana dispare elementul ce suprapune butonul
+        if (Utils.waitToDisappear(driver,5,By.id(Selectors.BUTTON_MODAL_DISSAPEAR)))
+        submitButton.click();
+    }
 
     @Test
     public void login01() throws InterruptedException {
@@ -103,45 +138,7 @@ public class LoginTest {
          */
 
     }
-    @Test(dataProvider = "RegistrationDataProvider")
-    public void loginRegister(String username, String password, String securityAns){
-        driver.get(baseUrl + "/#/login");
-       WebElement dismissModalElement = Utils.waitForElement(driver, 5,
-               By.cssSelector(Selectors.MODAL_OK_BUTTON));
-       dismissModalElement.click();
-        WebElement registerLink = driver.findElement(By.cssSelector(Selectors.REGISTER_URL));
-        registerLink.click();
 
-        Assert.assertEquals(
-                driver.findElement(By.cssSelector(Selectors.REGISTER_HEADER)).getText(),
-                "User Registration");
-
-        WebElement usernameElement = driver.findElement(By.id(Selectors.REGISTER_EMAIL));
-        usernameElement.clear();
-        usernameElement.sendKeys("alex@alex.com");
-
-       WebElement passwordElement = driver.findElement(By.id(Selectors.REGISTER_PASSWORD));
-       passwordElement.clear();
-       passwordElement.sendKeys("Abc123$");
-
-       WebElement passwordRepeat = driver.findElement(By.id(Selectors.REGISTER_CONFIRM));
-       passwordRepeat.clear();
-       passwordRepeat.sendKeys("Abc123$");
-
-       WebElement securityQuestion = Utils.waitForElement(driver, 5,
-               By.cssSelector(Selectors.SECURITY_QUESTION));
-       securityQuestion.click();
-
-       WebElement securityQuestionChoice = driver.findElement(By.cssSelector(Selectors.SECURITY_QUESTION1));
-       securityQuestionChoice.click();
-
-       WebElement securityAnswer = driver.findElement(By.id(Selectors.SECURITY_ANSWER));
-       securityAnswer.clear();
-       securityAnswer.sendKeys("alex");
-
-       WebElement submitButton = driver.findElement(By.id(Selectors.REGISTER_SUBMIT_BUTTON));
-       submitButton.click();
-    }
 
 
     @AfterMethod

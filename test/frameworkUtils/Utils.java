@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
@@ -72,4 +70,11 @@ public class Utils {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 
     }
+    public static boolean waitToDisappear(WebDriver driver, long seconds, By locator){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
+       return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+
+    }
+
+
 }

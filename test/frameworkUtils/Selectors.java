@@ -22,8 +22,9 @@ public class Selectors {
         public static final String REGISTER_EMAIL = "emailControl";
     public static final String REGISTER_PASSWORD = "passwordControl";
     public static final String REGISTER_CONFIRM = "repeatPasswordControl";
-    public static final String SECURITY_QUESTION = "";
-    public static final String SECURITY_QUESTION1 = "#mat-select-0";
+    public static final String SECURITY_QUESTION = "#mat-select-0 > div";
+    public static final String SECURITY_QUESTION1 = "#mat-option-0 > span";
     public static final String SECURITY_ANSWER = "securityAnswerControl";
     public static final String REGISTER_SUBMIT_BUTTON = "registerButton";
+    public static final String BUTTON_MODAL_DISSAPEAR = "cdk-overlay-0";
 }
