@@ -1,6 +1,9 @@
+package Others;
+
 import org.junit.jupiter.api.*;
 
 import java.text.DecimalFormat;
+import Calculator.*;
 
 public class CalculatorTests {
 

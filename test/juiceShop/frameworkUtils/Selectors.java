@@ -1,4 +1,4 @@
-package frameworkUtils;
+package juiceShop.frameworkUtils;
 
 public class Selectors {
     // main page
@@ -26,5 +26,5 @@ public class Selectors {
     public static final String SECURITY_QUESTION1 = "#mat-option-0 > span";
     public static final String SECURITY_ANSWER = "securityAnswerControl";
     public static final String REGISTER_SUBMIT_BUTTON = "registerButton";
-    public static final String BUTTON_MODAL_DISSAPEAR = "cdk-overlay-0";
+    public static final String COOKIES_MODAL = "cdk-overlay-0";
 }

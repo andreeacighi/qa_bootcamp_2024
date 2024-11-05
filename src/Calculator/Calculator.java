@@ -1,5 +1,7 @@
+package Calculator;
+
 /**
- * This class is numerical Calculator that implements the following Operators:
+ * This class is numerical Calculator.Calculator that implements the following Operators:
  * <ul>
  * <li>Add: +
  * <li>Subtract: -
@@ -11,7 +13,7 @@
  * The operands can be any double number.
  * <p>
  * <b>Current implementation supports only two operands. </b>
- * Sample input: {@code Calculator 1 + 2, having the output 1 + 2 = 3.}
+ * Sample input: {@code Calculator.Calculator 1 + 2, having the output 1 + 2 = 3.}
  */
 public class Calculator {
 	public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class Calculator {
 					args[1]);
 			System.out.println(args[0] + args[1] + args[2] + " = " + result);
 		} else {
-			System.err.println("Please use the following syntax: Calculator <operand1>  <operator> <operand2>");
+			System.err.println("Please use the following syntax: Calculator.Calculator <operand1>  <operator> <operand2>");
 		}
 	}
 
@@ -32,7 +34,7 @@ public class Calculator {
 	 * @param d2       second operand - In case of SQRT this param is ignored.
 	 * @param operator - it could one of: +, -, /, *, SQRT.
 	 */
-	double compute(double d1, double d2,
+	public double compute(double d1, double d2,
 	               String operator) throws IllegalArgumentException {
 		double result;
 		switch (operator) {

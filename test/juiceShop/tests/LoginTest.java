@@ -1,7 +1,7 @@
-package juiceShop;
+package juiceShop.tests;
 
-import frameworkUtils.Selectors;
-import frameworkUtils.Utils;
+import juiceShop.frameworkUtils.Selectors;
+import juiceShop.frameworkUtils.Utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,43 +10,34 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import juiceShop.pages.LoginPage;
+import juiceShop.pages.LoginPagePF;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class LoginTest {
-    static final String baseUrl = Utils.getConfigProperty("baseUrl");
+public class LoginTest extends BaseTest{
 
-    WebDriver driver;
 
-    @BeforeMethod
-    public void initBrowser(){
 
-        // OLD version !! Do not use unless the server you are testing does not have internet
-        // System.property("webdriver.chrome.driver", "C:\\Users\myuser\Download\chromedriver.exe");
-        driver = Utils.getDriver();
 
-    }
-
-    @Test
-    public void mainPage(){
-
-        // OLD version !! Do not use unless the server you are testing does not have internet
-        // System.property("webdriver.chrome.driver", "C:\\Users\myuser\Download\chromedriver.exe");
-        driver.get(baseUrl + "/#/");
-        WebElement pageText = driver.findElement(By.cssSelector(Selectors.ALL_PRODUCTS_SELECTOR));
-        Assert.assertEquals(pageText.getText(),"All Products");
-    }
     @DataProvider(name = "RegistrationDataProvider")
     public Iterator<Object[]> registerDp (){
         Collection<Object[]> dp = new ArrayList<>();
         dp.add(new String[] {"alex@alex.com","alexrtete","alex"});
         return dp.iterator();
     }
-
+    /*
     @Test(dataProvider = "RegistrationDataProvider")
-    public void loginRegister(String username, String password, String securityAns){
+    public void loginRegisterHomework(String username, String password, String securityAns){
+        driver.get(baseUrl + "/#/");
+    }
+
+     */
+
+   @Test
+    public void loginRegister(){
         driver.get(baseUrl + "/#/login");
         WebElement dismissModalElement = Utils.waitForElement(driver, 5,
                 By.cssSelector(Selectors.MODAL_OK_BUTTON));
@@ -83,12 +74,12 @@ public class LoginTest {
 
         WebElement submitButton = driver.findElement(By.id(Selectors.REGISTER_SUBMIT_BUTTON));
         //asteapta pana dispare elementul ce suprapune butonul
-        if (Utils.waitToDisappear(driver,5,By.id(Selectors.BUTTON_MODAL_DISSAPEAR)))
+        if (Utils.waitToDisappear(driver,5,By.id(Selectors.COOKIES_MODAL)))
         submitButton.click();
     }
-
+/*
     @Test
-    public void login01() throws InterruptedException {
+    public void login01()  {
 
         //test de componenta
         driver.get(baseUrl + "/#/login"); //testam loginul in izolare, adica mergem direct pe pagina de login
@@ -107,6 +98,7 @@ public class LoginTest {
 
          */
         // 2. Metoda
+    /*
         WebElement dismissModalElement = Utils.waitForElement(driver, 5,
                 By.cssSelector(Selectors.MODAL_OK_BUTTON));
         dismissModalElement.click();
@@ -118,6 +110,7 @@ public class LoginTest {
             throw new  RuntimeException(e);
         }
         wait.until(ExpectedConditions.presenceOfElementLocated());*/
+    /*
 
         WebElement loginElement = driver.findElement(By.id(Selectors.USERNAME_ID));
         loginElement.sendKeys("alex@alex.com");
@@ -127,6 +120,7 @@ public class LoginTest {
 
         WebElement submitButton = driver.findElement(By.id(Selectors.SUBMIT_ID));
         submitButton.click();
+
         // nu e recomandat
         /*
         try {
@@ -135,18 +129,31 @@ public class LoginTest {
             throw new RuntimeException(e);
         }
 
+
+
+    }
+
          */
+    @Test
+    public void login01(){
+        driver.get(baseUrl + "/#/login");
+        LoginPage lp = new LoginPage(driver);
+        lp.waitDismissModal();
+        lp.login("alex@alex.com","Qwert123$");
+    }
 
+    @Test
+    public void login02(){
+        driver.get(baseUrl + "/#/login");
+        LoginPagePF lp = new LoginPagePF(driver);
+        lp.dismissModal();
+        // Best practice isa to have the Asserts in tests
+        Assert.assertEquals(lp.getLoginText(),lp.getStaticLogicText());
+        lp.login("alex@alex.com","Qwert123$");
     }
 
 
 
-    @AfterMethod
-    public void closeBrowser(){
-        try {
-            driver.close();
-        }catch (Exception ex){
-            driver.quit();
-        }
-    }
+
+
 }
