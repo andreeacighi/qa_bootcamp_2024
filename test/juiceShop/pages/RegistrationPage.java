@@ -1,7 +1,9 @@
 package juiceShop.pages;
+import jdk.jshell.execution.Util;
 import juiceShop.frameworkUtils.Selectors;
 import juiceShop.frameworkUtils.Utils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,6 +23,7 @@ public class RegistrationPage extends BasePage {
     public static final String SECURITY_ANSWER = "securityAnswerControl";
     public static final String REGISTER_SUBMIT_BUTTON = "registerButton";
     private static final String COOKIES_MODAL = "cdk-overlay-0";
+    //private static final String COOKIES_MODAL2 ="body > div.cc-window.cc-floating.cc-type-info.cc-theme-classic.cc-bottom.cc-right.cc-color-override--1225450786 > div > a";
 
     private static final String REGISTER_STATIC_TEXT = "User Registration";
 
@@ -54,10 +57,15 @@ public class RegistrationPage extends BasePage {
         securityAnswerField.clear();
         securityAnswerField.sendKeys(securityAnswer);
 
+        //https://www.browserstack.com/guide/selenium-scroll-tutorial
+        //Utils.scrollDown(driver); // asta inca nu merge
+        Utils.scrollToElement(driver,securityAnswerField);
         WebElement submitButton = driver.findElement(By.id(REGISTER_SUBMIT_BUTTON));
         // asteapta pana dispare elementul ce suprapune butonul
         if (waitToDisappear(driver,5,By.cssSelector(COOKIES_MODAL)))
         submitButton.click();
+
+
     }
     public static boolean waitToDisappear(WebDriver driver, long seconds, By locator){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
