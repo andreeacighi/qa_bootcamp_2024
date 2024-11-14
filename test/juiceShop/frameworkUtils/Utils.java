@@ -8,6 +8,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -120,10 +121,28 @@ public class Utils {
        return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 
     }
+    public static WebElement waitForVisibility(WebDriver driver,long seconds,By locator){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+    }
 
     public static void scrollDown(WebDriver driver){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,250)","");
+    }
+    public static void setDate(WebDriver driver,String date,WebElement dateField){
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].value='" + date + "';", dateField);
+    }
+    public static void textToBeInElementLocated(WebDriver driver,long seconds, By locator,String text){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(seconds));
+
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(locator,text));
+    }
+    public static void waitToBeClickable(WebDriver driver,long seconds, WebElement locator){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public static void scrollToElement(WebDriver driver,WebElement element){
@@ -136,6 +155,7 @@ public class Utils {
             System.out.println(c.toJson());
         }
     }
+
 
 
 }
