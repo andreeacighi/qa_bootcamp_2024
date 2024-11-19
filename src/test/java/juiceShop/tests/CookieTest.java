@@ -4,8 +4,6 @@ import juiceShop.frameworkUtils.Utils;
 import org.openqa.selenium.Cookie;
 import org.testng.annotations.Test;
 
-import java.util.Set;
-
 public class CookieTest extends BaseTest{
     @Test
     public void cookieTest(){

@@ -2,13 +2,11 @@ package Homework5.tests;
 
 import Homework5.pages.RegistrationPage;
 
-import juiceShop.frameworkUtils.Utils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;

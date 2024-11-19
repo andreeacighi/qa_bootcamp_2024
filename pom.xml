@@ -13,13 +13,14 @@
         <lombokVersion>1.18.34</lombokVersion>
         <testNGVersion>7.10.2</testNGVersion>
         <surefireVersion>3.5.1</surefireVersion>
-        <suiteFile>testSuites\runSuites.xml</suiteFile>
+        <suiteFile>testSuites\petStoreSuite.xml</suiteFile>
         <extentReportVersion>5.1.2</extentReportVersion>
         <seleniumVersion>4.25.0</seleniumVersion>
         <restAssuredVersion>5.5.0</restAssuredVersion>
         <hamcrestVersion>3.0</hamcrestVersion>
         <jsonObjectVersion>20240303</jsonObjectVersion>
         <gsonVersion>2.11.0</gsonVersion>
+        <surefireRunnerVersion>3.5.2</surefireRunnerVersion>
     </properties>
 
     <dependencies>
@@ -115,7 +116,19 @@
                         <suiteXmlFiles>
                             <suiteXmlFile>${suiteFile}</suiteXmlFile>
                         </suiteXmlFiles>
+                        <properties>
+                            <name>listener</name>
+                            <value>customReporting.CustomTestListener,customReporting.CustomTestReporter</value>
+                        </properties>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.surefire</groupId>
+                            <artifactId>surefire-testng</artifactId>
+                            <version>${surefireRunnerVersion}</version>
+                        </dependency>
+                    </dependencies>
+
                 </plugin>
             </plugins>
         </pluginManagement>
