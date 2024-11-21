@@ -8,7 +8,7 @@
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.target>22</maven.compiler.target>
         <junitVersion>5.11.3</junitVersion>
         <lombokVersion>1.18.34</lombokVersion>
         <testNGVersion>7.10.2</testNGVersion>
