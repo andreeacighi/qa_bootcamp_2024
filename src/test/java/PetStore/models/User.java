@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Getter@Setter@NoArgsConstructor@AllArgsConstructor
 public class User implements Serializable {
-    private int id;
+    private long id;
     private String username;
     private String firstName;
     private String lastName;

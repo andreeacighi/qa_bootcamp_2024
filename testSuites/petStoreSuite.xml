@@ -15,4 +15,9 @@
             <class name="PetStore.UserTest" />
         </classes>
     </test>
+    <test name="Store Test" >
+        <classes>
+            <class name="PetStore.StoreTest" />
+        </classes>
+    </test>
 </suite>
